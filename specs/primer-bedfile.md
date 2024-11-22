@@ -3,11 +3,8 @@ layout: post
 title: primer-bedfile spec
 version: v0.1.0
 author: Chris Kent
-doi: aaa
 ---
 {{page.version}}
-
-{{page.doi}}
 
 ---
 
