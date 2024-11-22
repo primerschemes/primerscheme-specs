@@ -33,18 +33,18 @@ The primer.bed file is the main file created by tooling for amplicon sequencing.
 
 # 1.2 attributes 
 
-- 1. `chrom`: The name of the Chromosome for the primer. This should match the ID located in the reference.fasta header.
-- 2. `primerStart`: The start position of the primer on the `chrom`. 
-- 3. `primerEnd`: The non-inclusive end position of the primer on the `chrom`. Must be greater than `primerStart`.
-- 4. `primerName`: The name of the primer in the form `{runid}_{amplicon_number}_{direction}_{primer_number}`. 
+1. `chrom`: The name of the Chromosome for the primer. This should match the ID located in the reference.fasta header.
+2. `primerStart`: The start position of the primer on the `chrom`. 
+3. `primerEnd`: The non-inclusive end position of the primer on the `chrom`. Must be greater than `primerStart`.
+4. `primerName`: The name of the primer in the form `{runid}_{amplicon_number}_{direction}_{primer_number}`. 
     - `runid`: Must match regex `[a-zA-Z0-9\-]`.
     - `amplicon_number`: The number of the amplicon. Must be a positive integer. 
     - `direction`: The direction of the primers. Either `LEFT` or `RIGHT`.
     - `primer_number`: The number of the primer. Must be a positive integer.
-- 5. `pool`: The PCR pool the primer belongs to. Must be a positive integer. **1-based**.
-- 6. `strand`: The strand of the primer. Either `+` or `-`. Should match the `primerName:direction` (`LEFT`=`+`, `RIGHT`=`-`)
-- 7. `primerSeq`: The sequence of the primer in the 5' to 3' direction. Restricted to DNA [IUPAC](https://academic.oup.com/nar/article/13/9/3021/2381659) codes.
-- 8. `primerWeight`: The normalised weight for each primer for each pool. Can be left blank for Equimolar pools.
+5. `pool`: The PCR pool the primer belongs to. Must be a positive integer. **1-based**.
+6. `strand`: The strand of the primer. Either `+` or `-`. Should match the `primerName:direction` (`LEFT`=`+`, `RIGHT`=`-`)
+7. `primerSeq`: The sequence of the primer in the 5' to 3' direction. Restricted to DNA [IUPAC](https://academic.oup.com/nar/article/13/9/3021/2381659) codes.
+8. `primerWeight`: The normalised weight for each primer for each pool. Can be left blank for Equimolar pools.
 
 
 # 1.3 examples
