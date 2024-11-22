@@ -10,7 +10,7 @@ layout: home
 <ul>
 {% for page in pages %}
 <li>
-    <a href='{{page.url}}'>{{page.title}}</a>
+    <a href='{{site.url}}{{page.url}}'>{{page.title}}</a>
     <br>
     </li>
 {% endfor %}
