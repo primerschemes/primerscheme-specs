@@ -22,7 +22,7 @@ title: primerscheme-specs
 description: >- # this means to ignore newlines until "baseurl:"
   Specs for the primer.bed file (ARTIC-bedfile) format. Created and used by tooling for amplicon sequencing.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://chrisgkent.github.io/primer-bedfile" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://chrisgkent.github.io/primerscheme-specs" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: ChrisgKent
 
 # Build settings
