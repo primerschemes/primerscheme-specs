@@ -2,7 +2,8 @@
 layout: post
 title: primer-bedfile spec
 version: v0.1.0
-author: Chris Kent
+author: Chris Kent   
+
 ---
 {{page.version}}
 
@@ -10,8 +11,6 @@ author: Chris Kent
 
 ### Summary 
 The primer.bed file is the main file created by tooling for amplicon sequencing. Its purpose is to provide all the information required to reproduce the primer scheme. This includes the wet lab elements; primer sequences, which pool they belong to, and primer weights, and the analysis elements; which genomes the primers belong to, and their location in the genome. 
-
-
 
 
 # 1.1 Brief description  
