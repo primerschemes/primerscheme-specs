@@ -15,7 +15,7 @@ A `primer.bed` file describes an amplicon sequencing primer scheme and is genera
 
 # 1.1 Format overview  
 
-`primer.bed` files are tab-delimited text with each line describing a primer. The `primer.bed` format broadly follows the [Browser Extensible Data (BED)](https://samtools.github.io/hts-specs/BEDv1.pdf) specification. The format has seven required columns followed by one optional column.
+`primer.bed` files are tab-delimited text where each line describes a single primer that forms part of a primer pair associated with an amplicon. A compliant `primer.bed` file contains one or more pairs of primers. The format of `primer.bed` is loosely based on the [Browser Extensible Data (BED)](https://samtools.github.io/hts-specs/BEDv1.pdf) specification, with seven required columns followed by one optional column.
 
 | Column | Name    | Type            | Brief description             | Restrictions                                 |
 | --- | ------------ | --------------- | ----------------------------- | -------------------------------------------- |
@@ -30,47 +30,45 @@ A `primer.bed` file describes an amplicon sequencing primer scheme and is genera
 
 # 1.2 Field descriptions 
 
-1. `chrom`: The name of the corresponding reference sequence chromosome for the primer. This must match a valid sequence ID inside reference.fasta.
+1. `chrom`: The name of the corresponding reference sequence chromosome for the primer. This must match a valid sequence ID inside an accompanying reference sequence FASTA file,  by convention named `reference.fasta`.
 2. `primerStart`: The start position of the primer on the `chrom`. 
 3. `primerEnd`: The non-inclusive end position of the primer on the `chrom`. Must be greater than `primerStart`.
-4. `primerName`: The name of the primer in the form `{runid}_{amplicon_number}_{direction}_{primer_number}`. 
-    - `runid`: Must match regex `[a-zA-Z0-9\-]`.
-    - `amplicon_number`: The number of the amplicon. Must be a positive integer. 
-    - `direction`: The direction of the primers. Either `LEFT` or `RIGHT`.
-    - `primer_number`: The number of the primer. Must be a positive integer.
-5. `pool`: The PCR pool the primer belongs to. Must be a positive integer. **1-based**.
-6. `strand`: The strand of the primer. Either `+` or `-`. Should match the `primerName:direction` (`LEFT`=`+`, `RIGHT`=`-`)
+4. `primerName`: The name of the primer in the form `{prefix}_{amplicon_number}_{direction}_{primer_number}`. 
+    - `prefix`: Must match regex `[a-zA-Z0-9\-]`.
+    - `amplicon_number`: The number of the amplicon. Must be a positive integer incrementing from 1.
+    - `direction`: The direction of the primers. Must be either `LEFT` or `RIGHT`.
+    - `primer_number`: The number of the primer. Must be a positive integer incrementing from 1.
+5. `pool`: The PCR pool the primer belongs to. Must be a positive integer incrementing from 1.
+6. `strand`: The strand of the primer. Must be either `+` or `-`. Should match the `primerName:direction` (`LEFT`=`+`, `RIGHT`=`-`)
 7. `primerSeq`: The sequence of the primer in the 5' to 3' direction. Restricted to DNA [IUPAC](https://academic.oup.com/nar/article/13/9/3021/2381659) codes.
 8. `primerWeight`: The normalised weight for each primer for each pool. Can be left blank for equimolar pools.
 
+# 1.3 Comments
+
+the `primer.bed`
 
 
 
-# 1.3 Examples
+# 1.4 Examples
 
 A seven column `primer.bed` file, without `primerWeight`
 ```
 MN908947.3	47	78	SARS-CoV-2_1_LEFT_1	1	+	CTCTTGTAGATCTGTTCTCTAAACGAACTTT
 MN908947.3	419	447	SARS-CoV-2_1_RIGHT_1	1	-	AAAACGCCTTTTTCAACTTCTACTAAGC
-MN908947.3	344	366	SARS-CoV-2_2_LEFT_0	2	+	TCGTACGTGGCTTTGGAGACTC
-MN908947.3	707	732	SARS-CoV-2_2_RIGHT_0	2	-	TCTTCATAAGGATCAGTGCCAAGCT
+MN908947.3	344	366	SARS-CoV-2_2_LEFT_1	2	+	TCGTACGTGGCTTTGGAGACTC
+MN908947.3	707	732	SARS-CoV-2_2_RIGHT_1	2	-	TCTTCATAAGGATCAGTGCCAAGCT
 ```
 
-An eight column `primer.bed` file, with `primerWeight`
+An eight column `primer.bed` file, with concentrations defined in the optional eighth `primerWeight` column
 ```
 MN908947.3	47	78	SARS-CoV-2_1_LEFT_1	1	+	CTCTTGTAGATCTGTTCTCTAAACGAACTTT	1.4
 MN908947.3	419	447	SARS-CoV-2_1_RIGHT_1	1	-	AAAACGCCTTTTTCAACTTCTACTAAGC	1.4
-MN908947.3	344	366	SARS-CoV-2_2_LEFT_0	2	+	TCGTACGTGGCTTTGGAGACTC	1.6
-MN908947.3	707	732	SARS-CoV-2_2_RIGHT_0	2	-	TCTTCATAAGGATCAGTGCCAAGCT	1.6
+MN908947.3	344	366	SARS-CoV-2_2_LEFT_1	2	+	TCGTACGTGGCTTTGGAGACTC	1.6
+MN908947.3	707	732	SARS-CoV-2_2_RIGHT_1	2	-	TCTTCATAAGGATCAGTGCCAAGCT	1.6
 ```
 
 # 1.4 Best practices 
 
 >  TODO
 
- 
-
-## Todo
-
-- Comments
-  - Leading lines starting with a `#` may contain comments and must be accommodated during parsing.  
+ Multi chrom refs
